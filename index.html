@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Simples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .calculadora {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .campo {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .campo label {
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .campo input, .campo select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .botao {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .botao:hover {
+            background-color: #45a049;
+        }
+
+        .resultado {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora Simples</h1>
+    <div class="calculadora">
+        <div class="campo">
+            <label for="numero1">Primeiro número:</label>
+            <input type="number" id="numero1" placeholder="Digite o primeiro número">
+        </div>
+        <div class="campo">
+            <label for="numero2">Segundo número:</label>
+            <input type="number" id="numero2" placeholder="Digite o segundo número">
+        </div>
+        <div class="campo">
+            <label for="operacao">Operação:</label>
+            <select id="operacao">
+                <option value="+">Soma (+)</option>
+                <option value="-">Subtração (-)</option>
+                <option value="*">Multiplicação (*)</option>
+                <option value="/">Divisão (/)</option>
+            </select>
+        </div>
+        <button class="botao" onclick="calcular()">Calcular</button>
+        <div class="resultado" id="resultado"></div>
+    </div>
+
+    <script>
+        function calcular() {
+            const numero1 = parseFloat(document.getElementById("numero1").value);
+            const numero2 = parseFloat(document.getElementById("numero2").value);
+            const operacao = document.getElementById("operacao").value;
+
+            let resultado;
+
+            switch (operacao) {
+                case "+":
+                    resultado = numero1 + numero2;
+                    break;
+                case "-":
+                    resultado = numero1 - numero2;
+                    break;
+                case "*":
+                    resultado = numero1 * numero2;
+                    break;
+                case "/":
+                    if (numero2 !== 0) {
+                        resultado = numero1 / numero2;
+                    } else {
+                        resultado = "Erro: divisão por zero.";
+                    }
+                    break;
+                default:
+                    resultado = "Operação inválida.";
+            }
+
+            document.getElementById("resultado").textContent = `O resultado é: ${resultado}`;
+        }
+    </script>
+</body>
+</html>
